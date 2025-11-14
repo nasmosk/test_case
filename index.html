@@ -175,6 +175,21 @@
       justify-content: center;
       align-items: center;
     }
+    
+    .metrics-embed {
+      border-radius: 18px;
+      overflow: hidden;
+      margin: 10px 0 14px;
+      border: 1px solid #e1e6e6;
+      background: #ffffff;
+      height: 260px;
+    }
+    .metrics-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
 
     .phone {
       width: 440px;
@@ -321,7 +336,7 @@
               <ul>
                 <li>Marketplace design, recsys, experimentation.</li>
                 <li>Turning offline workflows into scalable systems.</li>
-                <li>Partnering with DS/Eng/sales to ship fast and iterate.</li>
+                <li>Partnering with DS/Eng/Sales to ship fast and iterate.</li>
               </ul>
 
               <h2>Fit for RepRally</h2>
@@ -434,87 +449,67 @@
       </div>
     </section>
 
-    <!-- SLIDE 3: MVP (reworked & claude.site embed) -->
+    <!-- SLIDE 3: MVP (UI + METRICS + WHY IT WORKS) -->
     <section class="slide">
-      <div class="slide-3-inner">
-        <!-- Left: MVP mock -->
-        <div class="phone-wrapper">
-          <div class="phone">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <iframe
-                src="https://claude.site/public/artifacts/47db3128-71aa-49b3-aa91-c6e9447bf965/embed"
-                title="Smart Reorder MVP"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                allow="clipboard-write"
-                allowfullscreen>
-              </iframe>
+        <div class="slide-3-inner">
+          <!-- Left: MVP mock -->
+          <div class="phone-wrapper">
+            <div class="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <iframe
+                  src="https://claude.site/public/artifacts/47db3128-71aa-49b3-aa91-c6e9447bf965/embed"
+                  title="Smart Reorder MVP"
+                  width="100%"
+                  height="100%"
+                  frameborder="0"
+                  allow="clipboard-write"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div class="phone-label">Smart Reorder · MVP</div>
             </div>
-            <div class="phone-label">Smart Reorder · MVP</div>
           </div>
+  
+          <!-- Right: MVP explanation + business impact -->
+          <article class="solution-card">
+            <div class="pill-header">Slide 3 · MVP · 0–6 Weeks</div>
+            <h1>Core-first Smart Reorder</h1>
+            <p class="subtitle">
+              Three simple blocks that protect heroes, add safe experiments, and make reordering a 30-second habit.
+            </p>
+  
+  
+            <div class="solution-scroll">
+              <h2>What Carlos Sees</h2>
+              <ul>
+                <li><strong>Don’t Run Out</strong> — red strip with SKUs about to stock out.</li>
+                <li><strong>Smart Reorder List</strong> — pre-filled quantities for his usual items.</li>
+              </ul>
+  
+              <h2>Why This Works (vs Pain Points)</h2>
+              <ul>
+                <li><strong>When to reorder</strong> → “Don’t Run Out” + simple days-of-cover remove mental math.</li>
+                <li><strong>Catalog overload</strong> → default is a short ranked list, not a 500-SKU browse.</li>
+                <li><strong>No time</strong> → flow is “Glance → Accept → Tweak 1–2 SKUs → Submit” in &lt;30s.</li>
+              </ul>
+  
+              <h2>Business Metrics</h2>
+              <ul>
+                <li><strong>North Star:</strong> Reorder GMV per active store (sweet snacks, HBW, beverages).</li>
+              </ul>
+              <ul>
+                <li><strong>Operational:</strong> reorder rate/store/month, % fast movers without stockout,
+                    time to place order.</li>
+                <li><strong>Revenue & margin:</strong> AOV of reorders, gross margin/store, dead-stock rate.</li>
+              </ul>
+  
+        
+              </p>
+            </div>
+          </article>
         </div>
-
-        <!-- Right: MVP explanation -->
-        <article class="solution-card">
-          <div class="pill-header">Slide 3 · MVP · 0–6 Weeks</div>
-          <h1>Core-first Smart Reorder</h1>
-          <p class="subtitle">
-            Ship a deterministic v1 that protects hero SKUs and makes reordering a 10-second task.
-          </p>
-
-          <div class="solution-scroll">
-            <h2>Goals</h2>
-            <ul>
-              <li>Never stock out of fast movers.</li>
-              <li>Cut reorder time from “browse catalog” → “review & confirm”.</li>
-              <li>Add 1–3 safe experiments per order without tying up capital.</li>
-            </ul>
-
-            <h2>What Ships in MVP</h2>
-            <ul>
-              <li><strong>Threshold-based alerting</strong> — uses revenue × frequency × recency (≥3 months).</li>
-              <li><strong>“Don’t run out” strip</strong> — flags SKUs that hit the 30 ± 7 day window.</li>
-              <li><strong>Smart Reorder List</strong> — pre-built cart from fast movers + medium SKUs &gt;2 months old.</li>
-              <li><strong>High School Picks v0</strong> — top 5 teen-snack SKUs from nearby, similar stores.</li>
-            </ul>
-
-            <h2>Flow for Carlos</h2>
-            <ol>
-              <li>Opens Orders → lands on <strong>Smart Reorder</strong> with “Don’t run out” at the top.</li>
-              <li>Reviews pre-filled quantities; edits +/– for a few lines.</li>
-              <li>Optionally taps into <strong>High School Picks</strong> to add 1–3 new SKUs.</li>
-              <li>Confirms order — total time ≈ 10–20 seconds.</li>
-            </ol>
-
-            <h2>Experiment Guardrails</h2>
-            <ul>
-              <li>Max <strong>3 new SKUs per order</strong>, <strong>1 case each</strong>.</li>
-              <li>After 60 days, each experiment is labeled “worked / broke even / tied up capital”.</li>
-              <li>Simple recommendation: “Keep A, B; drop C, D, E”.</li>
-            </ul>
-
-            <h2>Implementation & Metrics</h2>
-            <ul>
-              <li>Uses existing data + rep workflows.</li>
-              <li>Minimal APIs:
-                <code>/recommended_reorder?store_id=1289</code>,
-                <code>/top_trending?segment=high_school_snacks</code>.
-              </li>
-            </ul>
-
-            <div class="metric-row">
-              <div class="metric-pill">↑ Reorder frequency</div>
-              <div class="metric-pill">↓ Stockouts on fast movers</div>
-              <div class="metric-pill">↓ Time-to-order (&lt;10s)</div>
-              <div class="metric-pill">↑ Basket GMV</div>
-              <div class="metric-pill">↓ Dead-stock rate</div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+      </section>
 
     <!-- SLIDE 4: SMARTER RECS + AUTOPILOT -->
     <section class="slide">
@@ -553,8 +548,8 @@
 
             <h2>Store-level Personalization</h2>
             <ul>
-              <li><strong>Teen-heavy stores</strong>: prioritize sweet snacks & beverages in discovery modules.</li>
-              <li><strong>Office-heavy stores</strong>: emphasize coffee, protein, and functional HBW.</li>
+              <li><strong>Teen-heavy stores</strong>: prioritize sweet snacks & beverages.</li>
+              <li><strong>Office-heavy stores</strong>: emphasize coffee, protein, functional HBW.</li>
             </ul>
 
             <h2>Two-store Orchestration</h2>
@@ -565,9 +560,8 @@
 
             <h2>Experiment Outcome Card</h2>
             <ul>
-              <li>Simple “Experiment performance” summary, e.g.:<br />
-                “You tried 8 new items last quarter → 3 made money, 2 broke even, 3 tied up capital.
-                Keep A, B; drop C, D, E.”</li>
+              <li>“You tried 8 new items last quarter → 3 made money, 2 broke even, 3 tied up capital.
+                  Keep A, B; drop C, D, E.”</li>
             </ul>
 
             <h2>Autopilot for Fast Movers</h2>
