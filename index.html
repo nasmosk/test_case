@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>RepRally Reorder Experience – Carlos Prototype</title>
+  <title>RepRally – Reorder Experience Case Study</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -22,18 +22,133 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, "Inter", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       background: radial-gradient(circle at top left, #115b51, #062521 55%, #021614);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slides {
+      height: 100vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
     }
 
     .slide {
-      width: min(1500px, 100vw - 40px);
-      height: min(900px, 100vh - 40px);
+      width: 100%;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .slide-inner {
+      width: min(1400px, 100%);
+      height: min(820px, 100%);
+      background: var(--bg-dark);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .text-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 32px 32px 28px;
+      color: var(--text-main);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .text-scroll {
+      margin-top: 16px;
+      overflow-y: auto;
+      padding-right: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    h2 {
+      margin: 18px 0 6px;
+      font-size: 18px;
+    }
+
+    p {
+      margin: 6px 0 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    ul {
+      margin: 4px 0 10px 18px;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    ul li { margin-bottom: 6px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 32px;
+      margin-top: 18px;
+      height: 100%;
+      align-items: flex-start;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .slide-3-inner,
+    .slide-4-inner,
+    .slide-5-inner {
+      width: min(1500px, 100%);
+      height: min(900px, 100%);
       background: var(--bg-dark);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow-soft);
@@ -41,9 +156,11 @@
       display: flex;
       gap: 50px;
       color: #fff;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* =============== PHONE MOCKUP (LARGER +50PX) =============== */
     .phone-wrapper {
       width: 480px;
       flex-shrink: 0;
@@ -53,8 +170,8 @@
     }
 
     .phone {
-      width: 440px;   /* +50px wider */
-      height: 830px;  /* +50px taller */
+      width: 440px;
+      height: 830px;
       background: #ffffff;
       border-radius: 52px;
       padding: 16px 14px 26px;
@@ -95,141 +212,447 @@
       letter-spacing: 0.02em;
     }
 
-    /* RIGHT SIDE */
-    .content {
+    .solution-card {
       flex: 1;
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 36px 32px;
+      padding: 32px;
       color: var(--text-main);
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
 
-    .eyebrow {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    h1 { margin: 0; font-size: 28px; }
-    .subtitle { font-size: 14px; color: var(--text-muted); margin-top: 6px; margin-bottom: 12px; }
-
-    .badge-row {
-      margin-top: 10px;
-      display: flex; flex-wrap: wrap;
-      gap: 10px; font-size: 11px;
-    }
-
-    .badge {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .content-body {
-      margin-top: 18px;
+    .solution-scroll {
+      margin-top: 16px;
       overflow-y: auto;
-      padding-right: 12px;
+      padding-right: 10px;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    h2 { font-size: 18px; margin: 22px 0 8px; }
-    p, ul { font-size: 14px; line-height: 1.55; margin: 6px 0 10px; }
-    ul li { margin-bottom: 6px; }
-    code { font-size: 12px; background: #eef2f2; padding: 2px 4px; border-radius: 4px; }
-
-    .small-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-top: 18px;
-      margin-bottom: 6px;
-    }
-
-    .metric-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .metric-pill {
-      font-size: 12px;
-      padding: 6px 10px;
+    .pill-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid #dde3e3;
-      background: #ffffff;
+      background: #e7f1ef;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
     }
 
+    @media (max-width: 1100px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .slide-3-inner,
+      .slide-4-inner,
+      .slide-5-inner {
+        flex-direction: column;
+        height: auto;
+      }
+      .phone-wrapper {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .phone {
+        height: 700px;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <section class="slide">
+  <div class="slides">
 
-    <!-- LEFT — BIGGER PHONE MOCK -->
-    <div class="phone-wrapper">
-      <div class="phone">
-        <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <iframe
-            src="https://claude.site/public/artifacts/0b11a997-0718-4334-a971-55a8bc066cd7/embed"
-            title="Claude Artifact"
-            allow="clipboard-write"
-            allowfullscreen>
-          </iframe>
+    <!-- SLIDE 1: INTRO -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="text-card">
+          <div class="eyebrow">RepRally · Reorder Experience Case Study</div>
+          <h1 style="font-size:30px; margin-bottom:4px;">Anastasiia Moskovchenko</h1>
+          <p class="subtitle" style="margin-bottom:18px;">
+            Product Manager Lead · Marketplaces · ML Systems<br />
+            <a href="https://www.linkedin.com/in/nmosky/" target="_blank" style="color:#0f5c4f; font-weight:600; text-decoration:none;">
+              linkedin.com/in/nmosky
+            </a>
+          </p>
+
+          <div class="two-col">
+            <div class="text-scroll" style="padding-right:12px;">
+              <h2>About Me</h2>
+              <ul>
+                <li>8+ years shipping AI-powered marketplace products at scale</li>
+                <li>Led Video Recommendations at <strong>Yandex.Zen (80M MAU)</strong></li>
+                <li>Grew DAU from <strong>500K → 2.2M</strong> via ML + 150+ A/B tests</li>
+                <li>Built bidding platform at <strong>Phillips auction house</strong> (0→1)</li>
+                <li>Launched geo-ads at <strong>Yandex.Maps</strong> (17K SMBs in month 1)</li>
+              </ul>
+
+              <h2>Why RepRally</h2>
+              <ul>
+                <li>Geospatial, two-sided marketplace with offline constraints</li>
+                <li>Needs routing, matching, recsys & trust systems — my core experience</li>
+                <li>Excited to scale a field-rep playbook into product and automation</li>
+              </ul>
+
+              <h2>Assignment Focus</h2>
+              <ul>
+                <li>Design a <strong>Reorder Experience</strong> for Carlos’ stores</li>
+                <li>Increase reorder frequency and basket value</li>
+                <li>Protect margin by avoiding stockouts and dead stock</li>
+                <li>All in <strong>&lt;30 seconds on a phone</strong></li>
+              </ul>
+
+              <div class="tag-row">
+                <span class="tag">0→1 products</span>
+                <span class="tag">marketplaces</span>
+                <span class="tag">ML personalization</span>
+                <span class="tag">experimentation</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:center; align-items:flex-start;">
+              <div style="
+                background:white;
+                padding:20px;
+                border-radius:24px;
+                box-shadow:0 12px 40px rgba(0,0,0,0.25);
+                width:100%;
+                max-width:340px;
+                text-align:center;
+              ">
+                <img
+                  src="https://i.ibb.co/Rp6jwspJ/profile.jpg"
+                  alt="Anastasiia Moskovchenko"
+                  style="
+                    width:100%;
+                    border-radius:18px;
+                    object-fit:cover;
+                    aspect-ratio:4/5;
+                  "
+                />
+                <div style="margin-top:14px; color:#102320; font-size:14px; font-weight:600;">
+                  Anastasiia Moskovchenko
+                </div>
+                <div style="color:#5f6b68; font-size:12px; margin-top:4px;">
+                  Product Manager Lead
+                </div>
+                <a href="https://www.linkedin.com/in/nmosky/"
+                   target="_blank"
+                   style="color:#0f5c4f; font-size:12px; font-weight:600; text-decoration:none;">
+                  linkedin.com/in/nmosky
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="phone-label">Carlos · Smart Reorder Experience</div>
       </div>
-    </div>
+    </section>
 
-    <!-- RIGHT — TEXT CONTENT -->
-    <article class="content">
-      <div class="eyebrow">Test Assignment</div>
-      <h1>RepRally Reorder Experience</h1>
-      <div class="subtitle">Making reordering effortless while preserving rep relationships.</div>
+    <!-- SLIDE 2: JOURNEY + PAIN POINTS -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="text-card">
+          <div class="eyebrow">Slide 2 · Journey, Pain Points & Product Thesis</div>
+          <h1>Where Reordering Breaks Today</h1>
+          <p class="subtitle">
+            Carlos has two stores, lives on his phone, and has 20–30 seconds between customers.
+            The product has to think for him.
+          </p>
 
-      <div class="badge-row">
-        <div class="badge">8,000+ stores</div>
-        <div class="badge">500+ brands</div>
-      </div>
+          <div class="two-col">
+            <div class="text-scroll">
+              <h2>Carlos’ Reorder Journey</h2>
+              <ol style="margin-left:20px; padding:0; font-size:14px; line-height:1.6;">
+                <li><strong>Need detection</strong> – Sees shelves running low or a competitor carrying something teens love.</li>
+                <li><strong>Open app / link</strong> – Has a tiny window before the next customer.</li>
+                <li><strong>Reorder action</strong> – Wants “my usual” plus “what’s hot with kids now”, then quick edits.</li>
+                <li><strong>Discovery (optional)</strong> – Only if risk is clearly bounded.</li>
+                <li><strong>Checkout</strong> – Needs clarity on price, margin, and delivery timing.</li>
+              </ol>
 
-      <div class="content-body">
-        <h2>The Core Problem</h2>
-        <p>Carlos manages two stores and needs fast, accurate reordering + discovery.</p>
+              <h2>Product Thesis</h2>
+              <p><strong>“Always-on core. Guided experiments. Zero thinking.”</strong></p>
+              <ul>
+                <li>Never stock out of hero SKUs (Realsy, Magic Mind, Behave).</li>
+                <li>Every reorder suggests 2–3 no-brainer adds based on similar stores.</li>
+                <li>Experiments are small, time-boxed, auto-reviewed.</li>
+                <li>The full flow fits inside <strong>&lt;30 seconds</strong> on mobile.</li>
+              </ul>
+            </div>
 
-        <h2>Context</h2>
-        <p>Independent stores lack POS. RepRally blends scans, retail data, trends, and demographics.</p>
+            <div class="text-scroll">
+              <h2>Top Pain Points (Prioritized)</h2>
+              <ul>
+                <li><strong>P1 — No signal on when to reorder</strong> → repeated stockouts on winners.</li>
+                <li><strong>P2 — Catalog overload (500+ SKUs)</strong> → defaults to “same as last time”.</li>
+                <li><strong>P3 — No time for research</strong> → if it’s not 1–2 taps, it won’t happen.</li>
+                <li><strong>P4 — Fear of dead stock</strong> → experiments feel risky; bad bets kill trust.</li>
+                <li><strong>P5 — Two different customer bases</strong> → high-school vs neighborhood store treated the same.</li>
+              </ul>
 
-        <h2>Store Owners Hub</h2>
-        <ul>
-          <li>One-tap reordering</li>
-          <li>Personalized product discovery</li>
-          <li>Neighborhood trend intelligence</li>
-        </ul>
-
-        <h2>MVP: Smart Reorder (0–6 Weeks)</h2>
-        <ul>
-          <li>Fast-mover detection (no ML required)</li>
-          <li>Don’t-run-out alerts</li>
-          <li>Fully pre-populated reorder cart</li>
-          <li>High School Picks v0 (rules-based)</li>
-        </ul>
-
-        <p>APIs: <code>/recommended_reorder</code>, <code>/top_trending</code></p>
-
-        <div class="small-label">North Star Metrics</div>
-        <div class="metric-row">
-          <div class="metric-pill">Reorder GMV / store</div>
-          <div class="metric-pill">Reorder rate</div>
-          <div class="metric-pill">Stockout prevention</div>
-          <div class="metric-pill">Median reorder time</div>
+              <h2>Business Model Alignment</h2>
+              <ul>
+                <li>RepRally is the <strong>matching & intelligence layer</strong> for brands and stores.</li>
+                <li>You win when reorders are frequent, high-value, and low-risk.</li>
+                <li>The Reorder Experience is where GMV, margin and trust are created.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </article>
-  </section>
+    </section>
+
+    <!-- SLIDE 3: MVP -->
+    <section class="slide">
+      <div class="slide-3-inner">
+        <div class="phone-wrapper">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <iframe
+                src="https://claude.ai/public/artifacts/47db3128-71aa-49b3-aa91-c6e9447bf965/embed"
+                title="Smart Reorder MVP"
+                allow="clipboard-write; fullscreen">
+              </iframe>
+            </div>
+            <div class="phone-label">Carlos · Smart Reorder (MVP)</div>
+          </div>
+        </div>
+
+        <article class="solution-card">
+          <div class="pill-header">Slide 3 · Smart Reorder MVP (0–6 weeks)</div>
+          <h1>Core-first Smart Reorder · Ship Fast, Move GMV</h1>
+          <p class="subtitle">
+            A deterministic MVP that reduces stockouts and increases basket value using data you already have.
+          </p>
+
+          <div class="solution-scroll">
+            <h2>1. “Don’t Run Out” Core Alerting</h2>
+            <ul>
+              <li>Threshold-based, no new ML infra.</li>
+              <li>Fast movers per store via revenue × frequency (≥3 months) and recency.</li>
+              <li>Simple heuristic: if last order ≈ 30 ± 7 days → surface in <strong>“Don’t run out”</strong>.</li>
+              <li>Use scan + order history to estimate rough <strong>days of cover</strong>.</li>
+            </ul>
+
+            <h2>2. Smart Reorder List (Pre-built Cart)</h2>
+            <ul>
+              <li>Pre-populate with all fast movers and medium-velocity brands last ordered &gt; 2 months ago.</li>
+              <li>Default quantities = last successful order size.</li>
+              <li>Carlos reviews and taps “Confirm” instead of building from scratch.</li>
+            </ul>
+
+            <h2>3. Inline “High School Picks” v0</h2>
+            <ul>
+              <li>For “near high school” stores, show top 5 sweet/snack SKUs in similar stores.</li>
+              <li>Rules-based; aggregate network insights, no personalization yet.</li>
+            </ul>
+
+            <h2>4. Safe Experiment Guardrail</h2>
+            <ul>
+              <li>Max <strong>3 new SKUs per order</strong>, <strong>1 case each</strong>.</li>
+              <li>After 60 days: mark as “worked / didn’t work” based on sell-through.</li>
+            </ul>
+
+            <h2>5. Why This MVP Ships in 0–6 Weeks</h2>
+            <ul>
+              <li>Uses existing data and rep workflows; no org changes.</li>
+              <li>Minimal API surface:
+                <code>/recommended_reorder?store_id=1289</code>,
+                <code>/top_trending?segment=high_school_snacks</code>.
+              </li>
+              <li>No new logistics or routing complexity.</li>
+            </ul>
+
+            <h2>Key Metrics</h2>
+            <ul>
+              <li>Reorder frequency per store.</li>
+              <li>Stockout rate on fast movers.</li>
+              <li>Median time-to-order.</li>
+              <li>Basket size & incremental GMV from medium-velocity SKUs.</li>
+              <li>Experiment success rate & dead-stock rate.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: MORE SMART RECS + AUTOPILOT -->
+    <section class="slide">
+      <div class="slide-4-inner">
+        <div class="phone-wrapper">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <iframe
+                src="https://claude.ai/public/artifacts/b2865d5f-0cda-470a-a62c-90b255bd93fc/embed"
+                title="Smarter Recommendations"
+                allow="clipboard-write; fullscreen">
+              </iframe>
+            </div>
+            <div class="phone-label">Beyond MVP · Smarter Recommendations</div>
+          </div>
+        </div>
+
+        <article class="solution-card">
+          <div class="pill-header">Slide 4 · V2 – Smarter Recs & Autopilot</div>
+          <h1>More Signal, Less Guesswork for Carlos</h1>
+          <p class="subtitle">
+            V2 turns Smart Reorder into a richer decision engine and introduces a path to subscriptions.
+          </p>
+
+          <div class="solution-scroll">
+            <h2>1. Better Stock-out Modeling</h2>
+            <ul>
+              <li>Use rolling 90-day demand + scan frequency to estimate <strong>days of cover</strong>.</li>
+              <li>Flag risk earlier and rank items by stockout impact × margin.</li>
+            </ul>
+
+            <h2>2. Store-level Personalization</h2>
+            <ul>
+              <li><strong>Teen-heavy stores</strong> (like 1289): favor sweet snacks & beverages in discovery modules.</li>
+              <li><strong>Office-heavy stores</strong>: favor coffee, protein, functional HBW.</li>
+            </ul>
+
+            <h2>3. Two-store Orchestration</h2>
+            <ul>
+              <li>Let Carlos view per-store recommendations side by side.</li>
+              <li>Quick action: <strong>“Mirror 1289 order to 22401 (×2)”</strong> when it makes sense.</li>
+            </ul>
+
+            <h2>4. Discovery Outcomes Surfaced</h2>
+            <ul>
+              <li>Simple “Experiment performance” card, e.g.:<br />
+                “You tried 8 new items last quarter → 3 made money, 2 broke even, 3 tied up capital.
+                We recommend keeping A, B; dropping C, D, E.”</li>
+            </ul>
+
+            <h2>5. Autopilot for Fast Movers (Subscription / V2)</h2>
+            <ul>
+              <li>“<strong>Keep 21 days of stock for Realsy — auto reorder when needed.</strong>”</li>
+              <li>System triggers reorder; Carlos just confirms payment.</li>
+              <li>Addresses P1 (timing) and P3 (time pressure) with very high impact.</li>
+            </ul>
+
+            <p style="margin-top:10px; font-size:13px; color:var(--text-muted);">
+              There is a dedicated Autopilot mock here:
+              <a href="https://claude.ai/public/artifacts/ca35a932-c8d5-4ecd-96d3-b10b44a5f5ed"
+                 target="_blank"
+                 style="color:#0f5c4f; font-weight:600; text-decoration:none;">
+                Autopilot for Fast Movers demo
+              </a>.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: AI ASSISTANT -->
+    <section class="slide">
+      <div class="slide-5-inner">
+        <div class="phone-wrapper">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <iframe
+                src="https://claude.ai/public/artifacts/23222e2f-e14c-4aa4-a548-30df9bf85fdd/embed"
+                title="AI Reorder Assistant"
+                allow="clipboard-write; fullscreen">
+              </iframe>
+            </div>
+            <div class="phone-label">Your AI Reorder Assistant</div>
+          </div>
+        </div>
+
+        <article class="solution-card">
+          <div class="pill-header">Slide 5 · AI Sidekick (Future)</div>
+          <h1>“What Should I Restock Today?”</h1>
+          <p class="subtitle">
+            Voice-first assistant that turns manual browsing into AI-guided, bundle-based reordering.
+          </p>
+
+          <div class="solution-scroll">
+            <h2>Experience States</h2>
+            <ul>
+              <li><strong>State 1 – Listening</strong>: “Hey Sidekick, what should I reorder today?”</li>
+              <li><strong>State 2 – Analysis</strong>: checks stockout risk, velocity, trends, peer spikes, seasonality.</li>
+              <li><strong>State 3 – Summary</strong>: cards for “Don’t run out”, “Maximize profit”, “Trending near you”, “Weather demand alert”.</li>
+            </ul>
+
+            <h2>What the AI Sidekick Does</h2>
+            <ul>
+              <li>Predicts stockouts and shows “days left” per SKU.</li>
+              <li>Highlights high-margin SKUs and brand-funded promotions.</li>
+              <li>Surfaces local trends and seasonal / weather spikes.</li>
+              <li>Builds personalized bundles Carlos can confirm with one tap or voice.</li>
+            </ul>
+
+            <h2>Key Modules</h2>
+            <ul>
+              <li><strong>Low-stock predictor</strong> – velocity × scan × seasonality with confidence threshold.</li>
+              <li><strong>High-margin recommendations</strong> – margin × units sold and uplift vs current assortment.</li>
+              <li><strong>Trend & micro-segment intelligence</strong> – neighborhood type, Google Maps meta, peer demand.</li>
+              <li><strong>Weather & seasonal adjustments</strong> – heatwaves, rain, sports seasons.</li>
+              <li><strong>Voice interaction</strong> – “reorder my best-sellers”, “show high-margin picks”, “what’s trending near me?”.</li>
+            </ul>
+
+            <h2>Edge Cases</h2>
+            <ul>
+              <li>No history → fall back to store type + demographic defaults.</li>
+              <li>Multi-store owners → prompt for location.</li>
+              <li>Low-confidence suggestions → ask rep to verify.</li>
+              <li>Owner disagrees → feedback loop into ranking models.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: FINAL SUMMARY -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="text-card">
+          <div class="eyebrow">Slide 6 · Interview-style Summary</div>
+          <h1>How This Reorder System Serves Carlos — and RepRally</h1>
+          <div class="text-scroll">
+            <p>
+              I designed the reorder experience around Carlos’ real behavior:
+              fast movers he must protect, teen trends he wants but can’t research,
+              and experiments he fears because of dead stock.
+            </p>
+
+            <h2>The Flow in One View</h2>
+            <ul>
+              <li><strong>Smart Core Reorder</strong> eliminates thinking around timing and quantities.</li>
+              <li><strong>High School Trends</strong> drives relevant, high-margin discovery for his teen-heavy store.</li>
+              <li><strong>Safe Experimentation Guardrails</strong> bound risk while still growing basket value.</li>
+              <li><strong>Two-store Mode</strong> keeps both locations in sync without overcomplicating decisions.</li>
+              <li><strong>Autopilot & AI Sidekick</strong> are the natural evolution for retention and operating leverage.</li>
+            </ul>
+
+            <h2>How This Moves the Flywheel</h2>
+            <ul>
+              <li>More high-quality reorders → more behavioral and demand data.</li>
+              <li>Better data → smarter recommendations and pricing.</li>
+              <li>Smarter recommendations → higher GMV, margin, and store loyalty.</li>
+              <li>Higher GMV & retention → stronger brand adoption and more SKUs to optimize.</li>
+            </ul>
+
+            <p style="margin-top:16px;">
+              Thank you for reviewing this case study. I’d love to walk through tradeoffs,
+              edge cases, and how I’d phase this with engineering, data science, and sales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </body>
 </html>
