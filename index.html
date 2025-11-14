@@ -451,65 +451,86 @@
 
     <!-- SLIDE 3: MVP (UI + METRICS + WHY IT WORKS) -->
     <section class="slide">
-        <div class="slide-3-inner">
-          <!-- Left: MVP mock -->
-          <div class="phone-wrapper">
-            <div class="phone">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <iframe
-                  src="https://claude.site/public/artifacts/47db3128-71aa-49b3-aa91-c6e9447bf965/embed"
-                  title="Smart Reorder MVP"
-                  width="100%"
-                  height="100%"
-                  frameborder="0"
-                  allow="clipboard-write"
-                  allowfullscreen>
-                </iframe>
-              </div>
-              <div class="phone-label">Smart Reorder · MVP</div>
-            </div>
-          </div>
-  
-          <!-- Right: MVP explanation + business impact -->
-          <article class="solution-card">
-            <div class="pill-header">Slide 3 · MVP · 0–6 Weeks</div>
-            <h1>Core-first Smart Reorder</h1>
-            <p class="subtitle">
-              Three simple blocks that protect heroes, add safe experiments, and make reordering a 30-second habit.
-            </p>
-  
-  
-            <div class="solution-scroll">
-              <h2>What Carlos Sees</h2>
-              <ul>
-                <li><strong>Don’t Run Out</strong> — red strip with SKUs about to stock out.</li>
-                <li><strong>Smart Reorder List</strong> — pre-filled quantities for his usual items.</li>
-              </ul>
-  
-              <h2>Why This Works (vs Pain Points)</h2>
-              <ul>
-                <li><strong>When to reorder</strong> → “Don’t Run Out” + simple days-of-cover remove mental math.</li>
-                <li><strong>Catalog overload</strong> → default is a short ranked list, not a 500-SKU browse.</li>
-                <li><strong>No time</strong> → flow is “Glance → Accept → Tweak 1–2 SKUs → Submit” in &lt;30s.</li>
-              </ul>
-  
-              <h2>Business Metrics</h2>
-              <ul>
-                <li><strong>North Star:</strong> Reorder GMV per active store (sweet snacks, HBW, beverages).</li>
-              </ul>
-              <ul>
-                <li><strong>Operational:</strong> reorder rate/store/month, % fast movers without stockout,
-                    time to place order.</li>
-                <li><strong>Revenue & margin:</strong> AOV of reorders, gross margin/store, dead-stock rate.</li>
-              </ul>
-  
-        
-              </p>
-            </div>
-          </article>
+  <div class="slide-3-inner">
+
+    <!-- LEFT: Phone mockup -->
+    <div class="phone-wrapper">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <iframe
+            src="https://claude.site/public/artifacts/47db3128-71aa-49b3-aa91-c6e9447bf965/embed"
+            title="Smart Reorder MVP"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            allow="clipboard-write"
+            allowfullscreen>
+          </iframe>
         </div>
-      </section>
+        <div class="phone-label">Smart Reorder · MVP</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Explanation -->
+    <article class="solution-card">
+      <div class="pill-header">Slide 3 · MVP · 0–6 Weeks</div>
+      <h1>Core-first Smart Reorder</h1>
+      <p class="subtitle">
+        Simple, deterministic v1 that prevents stockouts, speeds ordering, and
+        removes cognitive load.
+      </p>
+
+      <div class="solution-scroll">
+
+        <!-- WHAT CARLOS SEES -->
+        <h2>What Carlos Sees</h2>
+        <ul>
+          <li><strong>Don’t Run Out</strong> — red strip showing SKUs with &lt;3–5 days of cover.</li>
+          <li><strong>Smart Reorder List</strong> — pre-filled quantities based on last successful order.</li>
+          <li><strong>High School Picks v0</strong> — 2–3 snack ideas that sell well in nearby teen-heavy stores.</li>
+        </ul>
+
+        <!-- NEW EMBED -->
+        <div class="metrics-embed" style="margin-top:14px;">
+          <iframe
+            src="https://claude.site/public/artifacts/0a80e7c5-3a93-4f8d-8263-540e4248db62/embed"
+            title="Claude Artifact"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            allow="clipboard-write"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- WHY THIS WORKS -->
+        <h2>Why This Works</h2>
+        <ul>
+          <li><strong>P1 — Timing solved:</strong> days-of-cover = (inventory ÷ avg daily velocity).  
+              “Don’t run out” removes mental math.</li>
+          <li><strong>P2 — Catalog overload:</strong> default entry is a short, ranked list — not 500 SKUs.</li>
+          <li><strong>P3 — No time:</strong> designed for <strong>&lt;30 sec</strong> — glance → accept → tweak → submit.</li>
+          <li><strong>P4 — Fear of dead stock:</strong> HS Picks v0 limited to low-risk, high-sell-through SKUs.</li>
+        </ul>
+
+        <!-- BUSINESS METRICS -->
+        <h2>Business Metrics</h2>
+        <ul>
+          <li><strong>North Star:</strong> Reorder GMV per active store.</li>
+        </ul>
+
+        <ul>
+          <li><strong>Operational:</strong> reorder rate/store/month, % fast movers with no stockout,
+              median time to reorder.</li>
+          <li><strong>Revenue:</strong> AOV (reorders), gross margin/store, dead-stock rate (&gt;90 days).</li>
+        </ul>
+
+      </div>
+    </article>
+  </div>
+</section>
+
 
     <!-- SLIDE 4: SMARTER RECS + AUTOPILOT -->
     <section class="slide">
